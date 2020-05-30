@@ -5,29 +5,33 @@ use October\Rain\Database\Updates\Migration;
 
 class UpdateBuddiesAddRoleIdColumn extends Migration
 {
+    public $table = 'lovata_buddies_users';
+
+    public $column = 'vdomah_roles_role_id';
+
     public function up()
     {
-        if (!Schema::hasTable('lovata_buddies_users') ||
-            Schema::hasColumn('lovata_buddies_users', 'role_id')
+        if (!Schema::hasTable($this->table) ||
+            Schema::hasColumn($this->table, $this->column)
         )
             return;
 
-        Schema::table('lovata_buddies_users', function($table)
+        Schema::table($this->table, function($table)
         {
-            $table->integer('role_id')->nullable();
+            $table->integer($this->column)->nullable();
         });
     }
 
     public function down()
     {
-        if (!Schema::hasTable('lovata_buddies_users') ||
-            !Schema::hasColumn('lovata_buddies_users', 'role_id')
+        if (!Schema::hasTable($this->table) ||
+            !Schema::hasColumn($this->table, $this->column)
         )
             return;
 
-        Schema::table('lovata_buddies_users', function($table)
+        Schema::table($this->table, function($table)
         {
-            $table->dropColumn('role_id');
+            $table->dropColumn($this->column);
         });
     }
 }
