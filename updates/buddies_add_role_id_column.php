@@ -7,7 +7,7 @@ class UpdateBuddiesAddRoleIdColumn extends Migration
 {
     public $table = 'lovata_buddies_users';
 
-    public $column = 'vdomah_roles_role_id';
+    public $column = 'vdomah_role_id';
 
     public function up()
     {
